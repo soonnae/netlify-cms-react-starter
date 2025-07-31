@@ -1,6 +1,7 @@
 import React from 'react'
 import Marked from 'react-markdown'
 import PropTypes from 'prop-types'
+import DOMPurify from 'dompurify'; // Import DOMPurify for sanitization
 
 import { getImageSrc, getImageSrcset } from '../util/getImageUrl'
 import './Content.css'
@@ -33,7 +34,7 @@ const HtmlBlock = ({ value }) => {
     <div
       className={`Content--Iframe`}
       dangerouslySetInnerHTML={{
-        __html: value
+        __html: DOMPurify.sanitize(value) // Sanitize the HTML content
       }}
     />
   )
