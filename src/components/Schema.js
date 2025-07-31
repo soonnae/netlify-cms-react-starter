@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import DOMPurify from 'dompurify';
 
 const Schema = ({
   name,
@@ -32,7 +33,7 @@ const Schema = ({
   return (
     <script
       type='application/ld+json'
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(JSON.stringify(data)) }}
     />
   )
 }
